@@ -9,7 +9,16 @@ $versionFile = ".\wyBuild\Versions\v"+$redistVersion+".xml"
 (Get-Content $templateFile).Replace('$version',$redistVersion) | out-file $versionFile -encoding utf8  
 
 #build updates
-$redistVersionDirectory = ".\redist\" + $redistVersion + "\"
+$redistDirectory = ".\redist"
+$redistVersionDirectory = $redistDirectory + "\" + $redistVersion + "\"
+$redistCurrentDirectory = $redistDirectory + "\current"
+
 & $wyBuildCmd  $wyBuildProject -add="Versions\v$redistVersion.xml" /bwu
 & copy .\output\wyUpdate\client.wyc $redistVersionDirectory
-& $wyBuildCmd  $wyBuildProject -add="Versions\v$redistVersion.xml" /bwu /bu
+& copy .\output\wyUpdate\wyUpdate.exe $redistVersionDirectory
+
+& $wyBuildCmd  $wyBuildProject /bwu /bu
+& copy .\output\wyUpdate\client.wyc $redistVersionDirectory
+& copy .\output\wyUpdate\wyUpdate.exe $redistVersionDirectory
+& copy .\output\wyUpdate\client.wyc $redistCurrentDirectory
+& copy .\output\wyUpdate\wyUpdate.exe $redistCurrentDirectory
