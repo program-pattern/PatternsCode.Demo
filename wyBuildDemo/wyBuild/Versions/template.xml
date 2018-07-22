@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Versions>
+    <AddVersion overwrite="true">
+        <Version>$version</Version>
+        <Changes>Some very very cool stuff</Changes>
+
+        <InheritPrevRegistry />
+        <InheritPrevActions />
+
+        <Files dir="basedir">
+		    <File source="..\redist\$version\App1.exe" />
+			<File source="..\redist\$version\client.wyc" />
+        </Files>
+    </AddVersion>
+</Versions>
