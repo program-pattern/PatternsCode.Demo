@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2035
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "App1SetupProject", "App1SetupProject\App1SetupProject.wixproj", "{1A80FEFF-B502-422E-83B8-E73D9D5E3AA2}"
+EndProject
+Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "App1Bootstrapper", "App1Bootstrapper\App1Bootstrapper.wixproj", "{C3DD3268-3F03-4010-B4D8-F948D8BC61DC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1A80FEFF-B502-422E-83B8-E73D9D5E3AA2}.Debug|x86.ActiveCfg = Debug|x86
+		{1A80FEFF-B502-422E-83B8-E73D9D5E3AA2}.Debug|x86.Build.0 = Debug|x86
+		{1A80FEFF-B502-422E-83B8-E73D9D5E3AA2}.Release|x86.ActiveCfg = Release|x86
+		{1A80FEFF-B502-422E-83B8-E73D9D5E3AA2}.Release|x86.Build.0 = Release|x86
+		{C3DD3268-3F03-4010-B4D8-F948D8BC61DC}.Debug|x86.ActiveCfg = Debug|x86
+		{C3DD3268-3F03-4010-B4D8-F948D8BC61DC}.Debug|x86.Build.0 = Debug|x86
+		{C3DD3268-3F03-4010-B4D8-F948D8BC61DC}.Release|x86.ActiveCfg = Release|x86
+		{C3DD3268-3F03-4010-B4D8-F948D8BC61DC}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A2D20D9D-412F-4A52-B6DE-2F0856376CBA}
+	EndGlobalSection
+EndGlobal
