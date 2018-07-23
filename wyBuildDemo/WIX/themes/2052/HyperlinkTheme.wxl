@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) .NET Foundation and contributors. All rights reserved. Licensed under the Microsoft Reciprocal License. See LICENSE.TXT file in the project root for full license information. -->
+
+
+<WixLocalization Culture="zh-cn" Language="2052" xmlns="http://schemas.microsoft.com/wix/2006/localization">
+  <String Id="Caption">[WixBundleName]安装</String>
+  <String Id="Title">[WixBundleName]</String>
+  <String Id="InstallHeader">欢迎</String>
+  <String Id="InstallMessage">安装程序将在您的计算机上安装[WixBundleName]。 单击“安装”继续，“选项”设置安装目录或“关闭”退出。</String>
+  <String Id="InstallVersion">版本 [WixBundleVersion]</String>
+  <String Id="ConfirmCancelMessage">是否确实要取消?</String>
+  <String Id="ExecuteUpgradeRelatedBundleMessage">之前的版本</String>
+  <String Id="HelpHeader">安装程序帮助</String>
+  <String Id="HelpText">/install | /repair | /uninstall | /layout [directory] - 安装，修复，卸载或
+    在目录中创建捆绑包的完整本地副本。 默认是安装。
+
+/passive | /quiet -  d显示最小的 UI 且无提示，或者不显示 UI 且
+   无提示。默认情况下显示 UI 和所有提示。
+
+/norestart   - 禁止任何重启的尝试。 默认情况下，UI将在重新启动之前提示。
+/log log.txt - 记录日志到指定文件。默认情况下在 %TEMP% 中创建日志文件。</String>
+  <String Id="HelpCloseButton">关闭(&amp;C)</String>
+  <String Id="InstallLicenseLinkText">[WixBundleName] &lt;a href="#"&gt;许可条款&lt;/a&gt;.</String>
+  <String Id="InstallAcceptCheckbox">我同意许可条款和条件(&amp;A)</String>
+  <String Id="InstallOptionsButton">选项(&amp;O)</String>
+  <String Id="InstallInstallButton">安装(&amp;I)</String>
+  <String Id="InstallCloseButton">关闭(&amp;C)</String>
+  <String Id="OptionsHeader">安装选项</String>
+  <String Id="OptionsLocationLabel">安装位置:</String>
+  <String Id="OptionsBrowseButton">浏览(&amp;B)</String>
+  <String Id="OptionsOkButton">确定(&amp;O)</String>
+  <String Id="OptionsCancelButton">取消(&amp;C)</String>
+  <String Id="ProgressHeader">安装进度</String>
+  <String Id="ProgressLabel">正在处理:</String>
+  <String Id="OverallProgressPackageText">正在初始化...</String>
+  <String Id="ProgressCancelButton">取消(&amp;C)</String>
+  <String Id="ModifyHeader">修改安装</String>
+  <String Id="ModifyRepairButton">修复(&amp;R)</String>
+  <String Id="ModifyUninstallButton">卸载(&amp;U)</String>
+  <String Id="ModifyCloseButton">关闭(&amp;C)</String>
+  <String Id="SuccessRepairHeader">已成功完成修复</String>
+  <String Id="SuccessUninstallHeader">已成功完成卸载</String>
+  <String Id="SuccessInstallHeader">已成功完成安装</String> 
+  <String Id="SuccessHeader">安装成功</String>	
+  <String Id="SuccessLaunchButton">启动(&amp;L)</String>
+  <String Id="SuccessRestartText">您必须重新启动计算机才能使用该软件。</String>
+  <String Id="SuccessRestartButton">重启(&amp;R)</String>
+  <String Id="SuccessCloseButton">关闭(&amp;C)</String>
+  <String Id="FailureHeader">安装失败</String>
+  <String Id="FailureInstallHeader">安装失败</String>
+  <String Id="FailureUninstallHeader">卸载失败</String>
+  <String Id="FailureRepairHeader">修复失败</String> 
+  <String Id="FailureHyperlinkLogText">一个或多个问题导致安装失败。请修复这些问题, 然后重试安装程序。更多信息请参见 &lt;a href="#"&gt;日志文件&lt;/a&gt;。</String>
+  <String Id="FailureRestartText">必须重新启动计算机才能完成软件的回滚。</String>
+  <String Id="FailureRestartButton">重启(&amp;R)</String>
+  <String Id="FailureCloseButton">关闭(&amp;C)</String>
+  <String Id="FilesInUseHeader">正在使用的文件</String>
+  <String Id="FilesInUseLabel">下列应用程序正在使用需要更新的文件:</String>
+  <String Id="FilesInUseCloseRadioButton">关闭应用程序并尝试重新启动它们。(&amp;A)</String>
+  <String Id="FilesInUseDontCloseRadioButton">不要关闭应用程序。将需要重新启动。(&amp;D)</String>
+  <String Id="FilesInUseOkButton">确定(&amp;O)</String>
+  <String Id="FilesInUseCancelButton">取消(&amp;C)</String>
+  <String Id="ErrorFailNoActionReboot">在需要重新启动系统时不要做任何操作。</String>
+</WixLocalization>

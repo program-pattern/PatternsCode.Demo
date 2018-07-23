@@ -1,30 +1,88 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-	<Product Id="*" Name="App1SetupProject" Language="1033" Version="1.0.0.0" Manufacturer="" UpgradeCode="1dda3607-223e-4d49-a58f-628102485819">
-		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+  <Product Id="*" Name="App1" Language="1033" Version="1.0.0.0" Manufacturer="PatternsCode" UpgradeCode="1dda3607-223e-4d49-a58f-628102485819">
+    <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
 
-		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
-		<MediaTemplate />
+    <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+    <MediaTemplate EmbedCab="yes" />
 
-		<Feature Id="ProductFeature" Title="App1SetupProject" Level="1">
-			<ComponentGroupRef Id="ProductComponents" />
-		</Feature>
-	</Product>
+    <Icon Id ="icon.ico" SourceFile="setup.ico" />
+    <Property Id="ARPPRODUCTICON" Value="icon.ico" />
+
+    <Feature Id="ProductFeature" Title="App1SetupProject" Level="1">
+      <ComponentGroupRef Id="ProductComponents" />
+      <ComponentRef Id="ApplicationShortcut"/>
+      <ComponentRef Id="DesktopFolderShortcut" />
+    </Feature>
+    
+    <Property Id="WIXUI_INSTALLDIR" Value="INSTALLFOLDER" />
+    <UI>
+      <UIRef Id="WixUI_InstallDir" />
+    </UI>
+  </Product>
 
 	<Fragment>
 		<Directory Id="TARGETDIR" Name="SourceDir">
 			<Directory Id="ProgramFilesFolder">
-				<Directory Id="INSTALLFOLDER" Name="App1SetupProject" />
+				<Directory Id="INSTALLFOLDER" Name="App1" />
 			</Directory>
-		</Directory>
+      
+      <Directory Id="ProgramMenuFolder">
+        <Directory Id="ApplicationProgramsFolder" Name="App1" />
+      </Directory>
+
+      <Directory Id="DesktopFolder" Name="Desktop" />
+    </Directory>
 	</Fragment>
 
 	<Fragment>
 		<ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
-			<!-- TODO: Remove the comments around this Component element and the ComponentRef below in order to add resources to this installer. -->
-			<!-- <Component Id="ProductComponent"> -->
-				<!-- TODO: Insert files, registry keys, and other resources here. -->
-			<!-- </Component> -->
+      <Component Id="ProductComponent" Guid="73FF5E1F-F69B-40FE-A7F7-66A7A3A8DF46">
+        <File Id="client.wyc"  Source="../../redist/Current/client.wyc" />
+        <File Id="App1.exe"  Source="../../redist/Current/App1.exe" />
+        <File Id="wyUpdate.exe"  Source="../../redist/Current/wyUpdate.exe" />        
+      </Component>
 		</ComponentGroup>
+
+        <!-- Add the shortcut to your installer package -->
+    <DirectoryRef Id="ApplicationProgramsFolder">
+      <Component Id="ApplicationShortcut" Guid="9243FE0C-89FB-418A-8144-B0DC109B36AD">
+        <Shortcut Id="ApplicationStartMenuShortcut"
+                  Name="App1"
+                  Description="App1"
+                  Target="[INSTALLFOLDER]App1.exe"
+                  WorkingDirectory="INSTALLFOLDER"/>
+        <Shortcut Id="ApplicationStartUpdateMenuShortcut"
+                  Name="Update App1"
+                  Description="Update App1"
+                  Target="[INSTALLFOLDER]wyUpdate.exe"
+                  WorkingDirectory="INSTALLFOLDER"/>
+        <!--<util:InternetShortcut Id="OnlineDocumentationShortcut"
+                Name="My Online Documentation"
+                       Target="http://wixtoolset.org/"/>
+
+        -->
+        <!-- Add the uninstall shortcut to your installer package -->
+        <!--
+        <Shortcut Id="UninstallProduct"
+                  Name="Uninstall WIXTest1"
+                  Description="Uninstalls WIXTest1"
+                  Target="[System64Folder]msiexec.exe"
+                  Arguments="/x [ProductCode]"/>-->
+
+
+        <RemoveFolder Id="ApplicationProgramsFolder" On="uninstall"/>
+        <RegistryValue Root="HKCU" Key="Software\PatternsCode\App1" Name="installed" Type="integer" Value="1" KeyPath="yes"/>
+      </Component>
+    </DirectoryRef>
+
+    <DirectoryRef Id="DesktopFolder">
+      <Component Id="DesktopFolderShortcut" Guid="FB981A5D-4185-4CCC-B4C1-750F816CF7B8">
+        <Shortcut Id="DesktopShortcut" Directory="DesktopFolder"   Name="App1" Target="[INSTALLFOLDER]App1.exe"  WorkingDirectory="INSTALLFOLDER">
+        </Shortcut>
+        <RegistryValue Root="HKCU" Key="Software\PatternsCode\App1" Name="installed" Type="integer" Value="1" KeyPath="yes"/>
+      </Component>
+    </DirectoryRef>
+  
 	</Fragment>
 </Wix>

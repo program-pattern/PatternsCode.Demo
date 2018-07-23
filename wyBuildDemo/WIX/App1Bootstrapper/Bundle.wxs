@@ -1,11 +1,196 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-	<Bundle Name="App1Bootstrapper" Version="1.0.0.0" Manufacturer="" UpgradeCode="c3dd3268-3f03-4010-b4d8-f948d8bc61dc">
-		<BootstrapperApplicationRef Id="WixStandardBootstrapperApplication.RtfLicense" />
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
+     xmlns:util="http://schemas.microsoft.com/wix/UtilExtension"
+     xmlns:bal="http://schemas.microsoft.com/wix/BalExtension"
+     xmlns:netfx="http://schemas.microsoft.com/wix/NetFxExtension">
+	<Bundle Name="App1" Version="1.0.0.0" Manufacturer="App1" UpgradeCode="c3dd3268-3f03-4010-b4d8-f948d8bc61dc">
+    <BootstrapperApplicationRef Id="WixStandardBootstrapperApplication.HyperlinkLicense">
+      <bal:WixStandardBootstrapperApplication
+              ShowVersion="yes"
+              LicenseUrl="" />
+      <Payload Name="thm.wxl" Compressed="yes" SourceFile="..\themes\HyperlinkTheme.wxl" />
+      <Payload Name="1028\thm.wxl" Compressed="yes" SourceFile="..\themes\1028\HyperlinkTheme.wxl" />
+      <Payload Name="2052\thm.wxl" Compressed="yes" SourceFile="..\themes\2052\HyperlinkTheme.wxl" />
+    </BootstrapperApplicationRef>
 
+    <Variable Name="InstallFolder" Type="string" Value="[ProgramFilesFolder]eChain"/>
+    
 		<Chain>
-			<!-- TODO: Define the list of chained packages. -->
-			<!-- <MsiPackage SourceFile="path\to\your.msi" /> -->
+      <PackageGroupRef Id="WinInstaller45" />
+      <PackageGroupRef Id="Win2K3WIC" />
+      <PackageGroupRef Id="NetFx40Web" />
+      <!--<PackageGroupRef Id="ReportViewer2012" />-->
+      <PackageGroupRef Id="AppPackage" />
 		</Chain>
 	</Bundle>
+
+  <Fragment>
+    <util:RegistrySearch
+      Id ="SQLSysClrTypesInstalled"
+      Variable="SQLSysClrTypesInstalled"
+      Result="exists"
+      Root="HKLM"
+      Key="SOFTWARE\Microsoft\Microsoft SQL Server 2012 Redist\SQL Server System CLR Types\CurrentVersion"/>
+
+    <util:RegistrySearch
+      Id="ReportViewer2012Installed"
+      Variable="ReportViewer2012Installed"
+      Result="exists"
+      Root="HKLM"
+      Key="Software\Microsoft\Microsoft SQL Server 2012 Redist\Microsoft Report Viewer 2012 Runtime"/>
+  </Fragment>
+
+  <Fragment>
+
+    <util:RegistrySearchRef Id="SQLSysClrTypesInstalled"/>
+    <util:RegistrySearchRef Id="ReportViewer2012Installed"/>
+
+    <PackageGroup Id="WinInstaller45">
+      <!--SourceFile="..\redist\x86\WindowsXP-KB942288-v3-x86.exe"-->
+      <ExePackage Id="Msi45XPx86exe"
+                  Cache="no"
+                  Compressed="no"
+                  PerMachine="yes"
+                  Permanent="yes"
+                  Vital="yes"
+                  Name="WindowsXP-KB942288-v3-x86.exe"
+                  DownloadUrl="http://download.microsoft.com/download/2/6/1/261fca42-22c0-4f91-9451-0e0f2e08356d/WindowsXP-KB942288-v3-x86.exe"
+                  InstallCondition="VersionNT=v5.1 AND NOT VersionNT64 AND VersionMsi &lt; v4.5"
+                  InstallCommand="/quiet /norestart">
+        <RemotePayload ProductName="Windows Installer 4.5"
+                       Description="Windows Installer 4.5 Setup"
+                       CertificatePublicKey="F321408E7C51F8544B98E517D76A8334052E26E8"
+                       CertificateThumbprint="D57FAC60F1A8D34877AEB350E83F46F6EFC9E5F1"
+                       Hash="86E1CC622DBF4979717B8F76AD73220CDB70400B"
+                       Size="3327000"
+                       Version="4.5.0.0" />
+        <ExitCode Behavior="forceReboot"/>
+      </ExePackage>
+      <!--SourceFile="..\redist\x86\WindowsServer2003-KB942288-v4-x86.exe"-->
+      <ExePackage Id="Msi452K3x86exe"
+            Cache="no"
+            Compressed="no"
+            PerMachine="yes"
+            Permanent="yes"
+            Vital="yes"
+            Name="WindowsServer2003-KB942288-v4-x86.exe"
+            DownloadUrl="http://download.microsoft.com/download/2/6/1/261fca42-22c0-4f91-9451-0e0f2e08356d/WindowsServer2003-KB942288-v4-x86.exe"
+            InstallCondition="VersionNT=v5.2 AND NOT VersionNT64 AND VersionMsi &lt; v4.5"
+            InstallCommand="/quiet /norestart">
+        <RemotePayload ProductName="Windows Installer 4.5"
+               Description="Windows Installer 4.5 Setup"
+               CertificatePublicKey="F321408E7C51F8544B98E517D76A8334052E26E8"
+               CertificateThumbprint="D57FAC60F1A8D34877AEB350E83F46F6EFC9E5F1"
+               Hash="8ECC8FD0549AB6F26803E9C2F840A671760F913B"
+               Size="3071512"
+               Version="4.5.0.0" />
+        <ExitCode Behavior="forceReboot"/>
+      </ExePackage>
+      <!--SourceFile="..\redist\x64\WindowsServer2003-KB942288-v4-x64.exe"-->
+      <ExePackage Id="Msi452K3x64exe"
+            Cache="no"
+            Compressed="no"
+            PerMachine="yes"
+            Permanent="yes"
+            Vital="yes"
+            Name="WindowsServer2003-KB942288-v4-x64.exe"
+            DownloadUrl="https://download.microsoft.com/download/2/6/1/261fca42-22c0-4f91-9451-0e0f2e08356d/WindowsServer2003-KB942288-v4-x64.exe"
+            InstallCondition="(VersionNT=v5.1 OR VersionNT=v5.2) AND VersionNT64 AND VersionMsi &lt; v4.5"
+            InstallCommand="/quiet /norestart">
+        <RemotePayload ProductName="Windows Installer 4.5"
+               Description="Windows Installer 4.5 Setup"
+               CertificatePublicKey="F321408E7C51F8544B98E517D76A8334052E26E8"
+               CertificateThumbprint="D57FAC60F1A8D34877AEB350E83F46F6EFC9E5F1"
+               Hash="9724F8B3C12FADEEE26CD68E139F515CEE28ACEE"
+               Size="4691480"
+               Version="4.5.0.0" />
+        <ExitCode Behavior="forceReboot"/>
+      </ExePackage>
+    </PackageGroup>
+
+    <PackageGroup Id="Win2K3WIC">
+      <!--SourceFile="..\redist\x86\wic_x86_enu.exe"-->
+      <ExePackage Id="wic_x86"
+                Cache="no"
+                Compressed="no"
+                PerMachine="yes"
+                Permanent="yes"
+                Vital="yes"
+                Name="wic_x86_enu.exe"
+                DownloadUrl="http://download.microsoft.com/download/f/f/1/ff178bb1-da91-48ed-89e5-478a99387d4f/wic_x86_enu.exe"
+                InstallCondition="VersionNT=v5.2 AND NOT VersionNT64 AND NOT NETFRAMEWORK40FULL"
+                InstallCommand="/quiet /norestart">
+        <RemotePayload ProductName="Windows Imaging Component "
+                       Description="Windows Imaging Component  Setup"
+                       CertificatePublicKey="EED96BA97553CD4FEE1B4E19061EA39CABCF94FD"
+                       Hash="53C18652AC2F8A51303DEB48A1B7ABBDB1DB427F"
+                       Size="1227048"
+                       Version="6.1.22.4" />
+      </ExePackage>
+
+      <ExePackage Id="wic_x64"
+          Cache="no"
+          Compressed="no"
+          PerMachine="yes"
+          Permanent="yes"
+          Vital="yes"
+          Name="wic_x64_enu.exe"
+          DownloadUrl="http://download.microsoft.com/download/f/f/1/ff178bb1-da91-48ed-89e5-478a99387d4f/wic_x86_enu.exe"
+          InstallCondition="VersionNT=v5.2 AND VersionNT64 AND NOT NETFRAMEWORK40FULL"
+          InstallCommand="/quiet /norestart">
+        <RemotePayload ProductName="Windows Imaging Component "
+                       Description="Windows Imaging Component  Setup"
+                       CertificatePublicKey="EED96BA97553CD4FEE1B4E19061EA39CABCF94FD"
+                       Hash="4BDBF76A7BC96453306C893B4A7B2B8AE6127F67"
+                       Size="1911592"
+                       Version="6.1.22.4" />
+      </ExePackage>
+    </PackageGroup>
+
+    <!--<PackageGroup Id="ReportViewer2012">
+      <MsiPackage Id="Microsoft.SqlServer.SQLSysClrTypes.11.0.x86"
+                  Name="x86\SQLSysClrTypes.msi"
+                  SourceFile="..\redist\x86\SQLSysClrTypes.msi"
+                  Cache="no"
+                  Compressed="yes"
+                  Permanent="yes"
+                  Visible="yes"
+                  Vital="yes"
+                  DownloadUrl="http://download.microsoft.com/download/F/E/D/FEDB200F-DE2A-46D8-B661-D019DFE9D470/ENU/x86/SQLSysClrTypes.msi"
+                  InstallCondition="NOT VersionNT64 AND NOT SQLSysClrTypesInstalled">
+      </MsiPackage>
+
+      <MsiPackage Id="Microsoft.SqlServer.SQLSysClrTypes.11.0.x64"
+                  Name="x64\SQLSysClrTypes.msi"
+                  SourceFile="..\redist\x64\SQLSysClrTypes.msi"
+                  Cache="no"
+                  Compressed="yes"
+                  Permanent="yes"
+                  Vital="yes"
+                  Visible="yes"
+                  DownloadUrl="http://download.microsoft.com/download/F/E/D/FEDB200F-DE2A-46D8-B661-D019DFE9D470/ENU/x64/SQLSysClrTypes.msi"
+                  InstallCondition="VersionNT64 AND NOT SQLSysClrTypesInstalled">
+      </MsiPackage>
+
+      <MsiPackage Id="ReportViewer2012Installer"
+                  Name="ReportViewer.msi"
+                  SourceFile="..\redist\ReportViewer.msi"
+                  Compressed="yes"
+                  Cache="no"
+                  Permanent="yes"
+                  Visible="yes"
+                  Vital="yes"
+                  DownloadUrl="http://download.microsoft.com/download/F/B/7/FB728406-A1EE-4AB5-9C56-74EB8BDDF2FF/1033/x86/ReportViewer.msi"
+                  InstallCondition="NOT ReportViewer2012Installed">
+
+      </MsiPackage>
+    </PackageGroup>-->
+
+    <PackageGroup Id="AppPackage">
+      <MsiPackage Id="App1" SourceFile="$(var.App1SetupProject.TargetPath)" Vital="yes">
+        <MsiProperty Name="INSTALLFOLDER" Value="[InstallFolder]" />
+      </MsiPackage>
+    </PackageGroup>
+  </Fragment>
+  
 </Wix>
