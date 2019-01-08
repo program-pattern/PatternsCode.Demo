@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27703.2042
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CefSharpDemo.WinForms.NET40", "src\CefSharpDemo.WinForms.NET40\CefSharpDemo.WinForms.NET40.csproj", "{E5683A58-7C7E-48EC-A40C-BB9BEE5B6BD9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CefSharpDemo.WinForms", "src\CefSharpDemo.WinForms\CefSharpDemo.WinForms.csproj", "{042B1B76-6D9F-46AB-A44F-FC80C353583B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,14 @@ Global
 		{E5683A58-7C7E-48EC-A40C-BB9BEE5B6BD9}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E5683A58-7C7E-48EC-A40C-BB9BEE5B6BD9}.Release|x86.ActiveCfg = Release|x86
 		{E5683A58-7C7E-48EC-A40C-BB9BEE5B6BD9}.Release|x86.Build.0 = Release|x86
+		{042B1B76-6D9F-46AB-A44F-FC80C353583B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{042B1B76-6D9F-46AB-A44F-FC80C353583B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{042B1B76-6D9F-46AB-A44F-FC80C353583B}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{042B1B76-6D9F-46AB-A44F-FC80C353583B}.Debug|x86.Build.0 = Debug|Any CPU
+		{042B1B76-6D9F-46AB-A44F-FC80C353583B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{042B1B76-6D9F-46AB-A44F-FC80C353583B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{042B1B76-6D9F-46AB-A44F-FC80C353583B}.Release|x86.ActiveCfg = Release|Any CPU
+		{042B1B76-6D9F-46AB-A44F-FC80C353583B}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
