@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Topshelf;
+using Topshelf.LibLog;
 
 namespace PatternsCode.WindowsServiceDemo
 {
@@ -14,7 +15,7 @@ namespace PatternsCode.WindowsServiceDemo
         {
             HostFactory.Run(x =>
             {
-                x.UseNLog();
+                x.UseLibLog();
                 x.Service<ServiceRunner>();
                 x.RunAsLocalSystem();
                 x.SetDescription("A Windows Service Demo using TopShelf and Quartz");

@@ -4,14 +4,14 @@ using System.Linq;
 using System.Text;
 
 using Quartz;
-using NLog;
+using PatternsCode.WindowsServiceDemo.Logging;
 using System.Threading.Tasks;
 
 namespace PatternsCode.WindowsServiceDemo
 {
     public sealed class TestJob : IJob
     {
-        Logger _logger = NLog.LogManager.GetCurrentClassLogger();
+        ILog _logger = LogProvider.GetCurrentClassLogger();
 
         public Task Execute(IJobExecutionContext context)
         {
